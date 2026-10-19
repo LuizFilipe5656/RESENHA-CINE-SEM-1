@@ -1,0 +1,15 @@
+/node_modules
+/build
+/.env
+/.env.*
+!/.env.example
+/yarn.lock
+dist
+/release
+compilados
+*.exe
+*.apk
+*.aab
+/npm-debug.log
+.DS_Store
+.prettierignore

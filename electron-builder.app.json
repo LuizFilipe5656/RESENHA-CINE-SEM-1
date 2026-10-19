@@ -1,0 +1,32 @@
+{
+    "appId": "com.cineresenha.app",
+    "productName": "CINE RESENHA",
+    "directories": {
+        "output": "build/instaladores/usuarios"
+    },
+    "files": [
+        "desktop/main.cjs",
+        "desktop/preload.cjs",
+        "assets/icon.ico",
+        "package.json",
+        "!node_modules/**"
+    ],
+    "extraResources": [
+        {
+            "from": "build/app",
+            "to": "web"
+        }
+    ],
+    "win": {
+        "icon": "assets/icon.ico",
+        "target": ["nsis"],
+        "artifactName": "Cine-Resenha-Usuarios-Setup.${ext}"
+    },
+    "nsis": {
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true,
+        "shortcutName": "CINE RESENHA"
+    }
+}

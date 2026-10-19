@@ -1,0 +1,92 @@
+// Copyright (C) 2017-2024 Smart code 203358507
+
+@import (reference) '~stremio/common/screen-sizes.less';
+
+.main-nav-bars-container {
+    position: relative;
+    z-index: 0;
+    overflow: clip;
+    margin-left: var(--safe-area-inset-left);
+    margin-right: var(--safe-area-inset-right);
+    width: calc(100% - var(--safe-area-inset-left) - var(--safe-area-inset-right));
+    height: 100%;
+
+    .horizontal-nav-bar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 3;
+    }
+
+    .top-tabs-bar {
+        position: absolute;
+        top: calc(var(--horizontal-nav-bar-size) + 0.2rem);
+        left: 0;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.8rem 1rem 0.9rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+        background: linear-gradient(180deg, rgba(11, 9, 17, 0.72), rgba(11, 9, 17, 0.38));
+        backdrop-filter: blur(18px) saturate(1.15);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 12px 30px rgba(8, 6, 14, 0.22);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .top-tab {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.5rem;
+        padding: 0 1rem;
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.04rem;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: #fff;
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(168, 85, 247, 0.08);
+        }
+
+        &.selected {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.34), rgba(192, 132, 252, 0.18));
+            border-color: rgba(168, 85, 247, 0.52);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
+    }
+
+    .nav-content-container {
+        position: absolute;
+        top: calc(var(--horizontal-nav-bar-size) + 4rem + var(--safe-area-inset-top));
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-width: @minimum) {
+    .main-nav-bars-container {
+        .nav-content-container {
+            top: calc(var(--horizontal-nav-bar-size) + 4.3rem + var(--safe-area-inset-top));
+        }
+    }
+}

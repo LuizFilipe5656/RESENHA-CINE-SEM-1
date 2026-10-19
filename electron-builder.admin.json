@@ -1,0 +1,36 @@
+{
+    "appId": "com.cineresenha.admin",
+    "productName": "CINE RESENHA | Painel Admin",
+    "directories": {
+        "output": "build/instaladores/painel-admin"
+    },
+    "extraMetadata": {
+        "main": "desktop/admin-main.cjs"
+    },
+    "files": [
+        "desktop/admin-main.cjs",
+        "desktop/main.cjs",
+        "desktop/preload.cjs",
+        "assets/icon.ico",
+        "package.json",
+        "!node_modules/**"
+    ],
+    "extraResources": [
+        {
+            "from": "build/admin",
+            "to": "web"
+        }
+    ],
+    "win": {
+        "icon": "assets/icon.ico",
+        "target": ["nsis"],
+        "artifactName": "Cine-Resenha-Painel-Admin-Setup.${ext}"
+    },
+    "nsis": {
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true,
+        "shortcutName": "CINE RESENHA ADMIN"
+    }
+}

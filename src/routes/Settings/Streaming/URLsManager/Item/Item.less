@@ -1,0 +1,128 @@
+// Copyright (C) 2017-2024 Smart code 203358507
+
+@import (reference) '~stremio/common/screen-sizes.less';
+
+.item {
+    display: flex;
+    padding: 0.9rem 1rem;
+    border-radius: 1.1rem;
+    transition: 0.3s all ease-in-out;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    justify-content: space-between;
+    position: relative;
+
+    .content {
+        display: flex;
+        gap: 0.9rem;
+        align-items: center;
+        justify-content: center;
+        max-width: 62%;
+
+        .selectable {
+            overflow: visible;
+        }
+
+        .label {
+            color: #f5f3ff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.96rem;
+            font-weight: 600;
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+        padding-right: 4rem;
+
+        .status {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+
+            .icon {
+                width: 0.7rem;
+                height: 0.7rem;
+                border-radius: 1rem;
+
+                &.ready {
+                    background-color: #a78bfa;
+                    box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+                }
+
+                &.error {
+                    background-color: #f472b6;
+                    box-shadow: 0 0 12px rgba(244, 114, 182, 0.65);
+                }
+            }
+
+            .label {
+                font-size: 0.8rem;
+                color: #f5f3ff;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-transform: uppercase;
+                letter-spacing: 0.08rem;
+            }
+        }
+
+        .delete {
+            position: absolute;
+            display: flex;
+            right: 1rem;
+            top: 50%;
+            gap: 0.5rem;
+            padding: 0.4rem 0.3rem;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transition: 0.3s all ease-in-out;
+            border-radius: 0.75rem;
+            transform: translateY(-50%);
+            width: 2.6rem;
+
+            .icon {
+                width: 1.2rem;
+                height: 1.2rem;
+                opacity: 0.6;
+                transition: 0.3s all ease-in-out;
+                color: #f5f3ff;
+            }
+
+            &:hover, &:focus {
+                background: rgba(168, 85, 247, 0.08);
+
+                .icon {
+                    color: #fda4af;
+                    opacity: 1 !important;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        border-color: rgba(168, 85, 247, 0.14);
+        box-shadow: 0 0 0 1px rgba(168,85,247,0.1);
+    }
+}
+
+@media only screen and (max-width: @minimum) {
+    .item {
+        padding: 0.8rem 0.8rem;
+
+        .actions {
+            .delete {
+                right: 0.8rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+project_id = "cine-resenha"
+
+[functions.cine-api]
+verify_jwt = false

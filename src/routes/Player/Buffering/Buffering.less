@@ -1,0 +1,95 @@
+
+.buffering {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+        position: absolute;
+        top: calc(50% - 10rem);
+        display: block;
+        max-width: 15rem;
+        max-height: 15rem;
+        width: auto;
+        height: auto;
+        animation: pulse 2s infinite;
+        transition: clip-path 0.1s ease-in-out;
+
+        &.background {
+            opacity: 0.2 !important;
+        }
+    }
+
+    .details {
+        position: absolute;
+        top: calc(50% + 6rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.45rem;
+        max-width: min(70vw, 48rem);
+        padding: 1.25rem 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 1.25rem;
+        background: rgba(12, 9, 18, 0.58);
+        backdrop-filter: blur(1rem);
+        text-align: center;
+    }
+
+    .status {
+        color: #c4a3f5;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+    }
+
+    .title {
+        max-width: 100%;
+        overflow: hidden;
+        color: #fff;
+        font-size: 1.7rem;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .episode {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 1rem;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 40rem) {
+    .buffering {
+        .logo {
+            top: calc(50% - 8rem);
+            max-width: 12rem;
+            max-height: 12rem;
+        }
+
+        .details {
+            top: calc(50% + 5rem);
+            max-width: 85vw;
+            padding: 1rem 1.25rem;
+        }
+
+        .title {
+            font-size: 1.3rem;
+        }
+    }
+}

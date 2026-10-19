@@ -1,0 +1,85 @@
+// Copyright (C) 2017-2024 Smart code 203358507
+
+@import (reference) '~stremio/common/screen-sizes.less';
+
+.add-item {
+    display: flex;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1.1rem;
+    transition: 0.3s all ease-in-out;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(168, 85, 247, 0.18);
+    justify-content: space-between;
+    position: relative;
+
+    .input {
+        background: rgba(255,255,255,0.02);
+        border-radius: 0.8rem;
+        color: #f5f3ff;
+        padding: 0.65rem 0.8rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        width: 70%;
+
+        &:focus {
+            border: 1px solid rgba(168, 85, 247, 0.7);
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+            outline: none;
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 0.4rem;
+        margin-right: 0;
+
+        .add, .cancel {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.55rem;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transition: 0.2s all ease-in-out;
+            border-radius: 0.8rem;
+            width: 2.8rem;
+            opacity: 0.8;
+
+            .icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                color: #f5f3ff;
+            }
+
+            &:hover {
+                opacity: 1;
+                background: rgba(168, 85, 247, 0.08);
+            }
+        }
+
+        .add {
+            &:hover {
+                .icon {
+                    color: #c4b5fd;
+                }
+            }
+        }
+
+        .cancel {
+            &:hover {
+                .icon {
+                    color: #f9a8d4;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        border-color: rgba(168, 85, 247, 0.24);
+    }
+}
+
+@media only screen and (max-width: @minimum) {
+    .add-item {
+        padding: 0.65rem 0.5rem;
+    }
+}

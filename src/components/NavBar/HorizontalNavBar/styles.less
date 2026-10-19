@@ -1,0 +1,158 @@
+// Copyright (C) 2017-2024 Smart code 203358507
+
+@import (reference) '~@stremio/stremio-colors/less/stremio-colors.less';
+@import (reference) '~stremio/common/screen-sizes.less';
+
+.horizontal-nav-bar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: var(--horizontal-nav-bar-size);
+    padding-right: 1rem;
+    background: linear-gradient(180deg, rgba(13, 10, 20, 0.86), rgba(13, 10, 20, 0.36));
+    backdrop-filter: blur(18px) saturate(1.2);
+    overflow: visible;
+    padding-top: var(--safe-area-inset-top);
+    box-sizing: content-box;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+    box-shadow: 0 10px 22px rgba(10, 8, 17, 0.12);
+
+    .logo-container {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        min-width: 0;
+        height: var(--horizontal-nav-bar-size);
+        padding-left: 1rem;
+        padding-right: 0.5rem;
+
+        .brand {
+            font-size: 0.98rem;
+            font-weight: 800;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
+            color: #f5f3ff;
+            text-shadow: 0 0 18px rgba(168, 85, 247, 0.9);
+            white-space: nowrap;
+        }
+    }
+
+    .back-button-container {
+        margin-left: max(0rem, calc(1rem - var(--safe-area-inset-left)));
+    }
+
+    .title {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 0 1rem;
+        font-size: 1.2rem;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: 0.01rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: @color-secondaryvariant2-light1-90;
+    }
+
+    .search-bar {
+        flex: none;
+        height: 2.75rem;
+        width: 22rem;
+        margin-left: 0.5rem;
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+        overflow: visible;
+    }
+
+    .hdr-indicator {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 3.5rem;
+        padding: 0 0.5rem;
+        opacity: 0.6;
+        user-select: none;
+
+        .icon {
+            flex: none;
+            width: 3rem;
+            height: 1.5rem;
+            color: var(--primary-foreground-color);
+            opacity: 0.6;
+        }
+    }
+
+    .button-container {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 0.85rem;
+        opacity: 0.72;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.2s ease;
+
+        .icon {
+            flex: none;
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary-foreground-color);
+            opacity: 0.72;
+        }
+
+        .active() {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(255,255,255,0.04));
+            border-color: rgba(168, 85, 247, 0.42);
+            opacity: 1;
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+
+            .icon {
+                color: #f5f3ff;
+                opacity: 1;
+            }
+        }
+
+        &:global(.active) {
+            .active();
+        }
+
+        @media (pointer: fine) {
+            &:hover {
+                .active();
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @minimum) {
+    .horizontal-nav-bar-container {
+        justify-content: space-between;
+        padding-right: 0;
+
+        .logo-container {
+            width: var(--horizontal-nav-bar-size);
+            min-width: 0;
+        }
+
+        .button-container {
+            margin: 0 1rem;
+
+            &:not(.back-button-container):not(.menu-button-container) {
+                display: none;
+            }
+        }
+    }
+}
