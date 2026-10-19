@@ -19,6 +19,7 @@ const MetaLinks = require('./MetaLinks');
 const MetaPreviewPlaceholder = require('./MetaPreviewPlaceholder');
 const styles = require('./styles');
 const { Ratings } = require('./Ratings');
+const useLocalizedSynopsis = require('stremio/common/useLocalizedSynopsis');
 
 const ALLOWED_LINK_REDIRECTS = [
     routesRegexp.search.regexp,
@@ -26,8 +27,9 @@ const ALLOWED_LINK_REDIRECTS = [
     routesRegexp.metadetails.regexp
 ];
 
-const MetaPreview = React.forwardRef(({ className, compact, name, logo, background, runtime, releaseInfo, released, description, deepLinks, links, trailerStreams, inLibrary, toggleInLibrary, watched, toggleWatched, ratingInfo, metadata, children, actions, showIcon = 'play', onShowClick }, ref) => {
+const MetaPreview = React.forwardRef(({ className, compact, name, logo, background, runtime, releaseInfo, released, description: originalDescription, metaId, metaType, deepLinks, links, trailerStreams, inLibrary, toggleInLibrary, watched, toggleWatched, ratingInfo, metadata, children, actions, showIcon = 'play', onShowClick }, ref) => {
     const { t } = useTranslation();
+    const { description, status } = useLocalizedSynopsis(metaType, metaId, originalDescription);
     const [shareModalOpen, openShareModal, closeShareModal] = useBinaryState(false);
     const isMobileLandscape = useMediaQuery(`(max-width: ${screenSizes.xsmall}) and (orientation: landscape)`);
     const iconActions = compact && isMobileLandscape;
@@ -119,12 +121,16 @@ const MetaPreview = React.forwardRef(({ className, compact, name, logo, backgrou
                     null
             }
             <div className={styles['meta-info-container']}>
+                {['movie', 'series'].includes(metaType) && <div className={styles['media-type']}>
+                    {metaType === 'movie' ? 'Filme' : 'Série'}
+                    <span>CINE RESENHA</span>
+                </div>}
                 {
                     typeof logo === 'string' && logo.length > 0 ?
                         <Image
                             className={styles['logo']}
                             src={logo}
-                            alt={' '}
+                            alt={name}
                             title={name}
                             renderFallback={renderLogoFallback}
                         />
@@ -154,9 +160,15 @@ const MetaPreview = React.forwardRef(({ className, compact, name, logo, backgrou
                         null
                 }
                 {
-                    compact && typeof description === 'string' && description.length > 0 ?
+                    (typeof description === 'string' && description.length > 0) || status ?
                         <div className={styles['description-container']}>
-                            {description}
+                            <div className={styles['label-container']}>{t('SUMMARY')}</div>
+                            <p className={styles['synopsis-text']}>{description || 'Resumo indisponível para este título.'}</p>
+                            {status && <span className={styles['synopsis-status']} role={'status'}>
+                                {status === 'loading' ? 'Buscando resumo em português…' :
+                                    status === 'ready' ? 'Fonte: Cine Resenha · Português (Brasil)' :
+                                        'Versão em português indisponível. Exibindo o resumo original, quando disponível.'}
+                            </span>}
                         </div>
                         :
                         null
@@ -176,17 +188,6 @@ const MetaPreview = React.forwardRef(({ className, compact, name, logo, backgrou
                                 links={linksGroups.get(category)}
                             />
                         ))
-                }
-                {
-                    !compact && typeof description === 'string' && description.length > 0 ?
-                        <div className={styles['description-container']}>
-                            <div className={styles['label-container']}>
-                                {t('SUMMARY')}
-                            </div>
-                            {description}
-                        </div>
-                        :
-                        null
                 }
                 {children}
             </div>
@@ -282,6 +283,8 @@ MetaPreview.propTypes = {
     releaseInfo: PropTypes.string,
     released: PropTypes.instanceOf(Date),
     description: PropTypes.string,
+    metaId: PropTypes.string,
+    metaType: PropTypes.string,
     deepLinks: PropTypes.shape({
         metaDetailsVideos: PropTypes.string,
         metaDetailsStreams: PropTypes.string,

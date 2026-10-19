@@ -47,13 +47,9 @@ const SideDrawer = memo(forwardRef<HTMLDivElement, Props>(({ seriesInfo, classNa
             };
     }, [props.metaItem, seriesInfo]);
 
-    if (!metaItem) {
-        return null;
-    }
-
     const allVideos = useMemo(() => {
-        return Array.isArray(metaItem.videos) ? metaItem.videos : [];
-    }, [metaItem.videos]);
+        return Array.isArray(metaItem?.videos) ? metaItem.videos : [];
+    }, [metaItem?.videos]);
 
     const now = useEpgNow(isEpg);
 
@@ -128,6 +124,8 @@ const SideDrawer = memo(forwardRef<HTMLDivElement, Props>(({ seriesInfo, classNa
         event.stopPropagation();
     };
 
+    if (!metaItem) return null;
+
     return (
         <div ref={ref} className={classNames(styles['side-drawer'], className)} onMouseDown={onMouseDown}>
             <div className={styles['close-button']} onClick={closeSideDrawer}>
@@ -137,6 +135,8 @@ const SideDrawer = memo(forwardRef<HTMLDivElement, Props>(({ seriesInfo, classNa
                 <MetaPreview
                     className={styles['side-drawer-meta-preview']}
                     compact={true}
+                    metaId={isEpgVideo ? undefined : metaItem.id}
+                    metaType={isEpgVideo ? undefined : metaItem.type}
                     name={getEpgTitle(isEpgVideo, previewVideo, metaItem)}
                     logo={metaItem.logo}
                     runtime={getEpgValue(isEpgVideo, previewVideo, metaItem, 'runtime')}

@@ -21,6 +21,14 @@
         z-index: -1;
         background-color: var(--modal-background-color);
 
+        &::after {
+            position: absolute;
+            inset: 0;
+            content: '';
+            background: linear-gradient(90deg, rgba(10, 9, 17, 0.97), rgba(10, 9, 17, 0.68) 55%, rgba(10, 9, 17, 0.35)),
+                linear-gradient(0deg, #0a0911, transparent 80%);
+        }
+
         .background-image {
             pointer-events: none; 
             display: block;
@@ -28,7 +36,7 @@
             height: 100%;
             object-fit: cover;
             object-position: right;
-            opacity: 0.3;
+            opacity: 0.65;
         }
     }
 
@@ -40,6 +48,7 @@
 
     .metadetails-content {
         flex: 1;
+        min-height: 0;
         align-self: stretch;
         position: relative;
         z-index: 0;
@@ -80,11 +89,12 @@
         }
 
         .meta-preview {
-            flex: 0 1 auto;
+            flex: 1 1 38rem;
+            max-width: 60rem;
             align-self: stretch;
-            padding: 0 4rem 2rem 4rem;
+            padding: 1.5rem 3rem 1.5rem 3rem;
 
-            padding-left: max(1rem, calc(4rem - var(--safe-area-inset-left)));
+            padding-left: max(1.5rem, calc(3rem - var(--safe-area-inset-left)));
         }
 
         .spacing {
@@ -92,10 +102,12 @@
         }
 
         .videos-list, .streams-list {
-            flex: 0 0 30rem;
+            flex: 0 0 clamp(22rem, 32vw, 30rem);
             align-self: stretch;
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-            background-color: rgba(0, 0, 0, 0.4);
+            margin: 1rem 1rem 1rem 0;
+            border: 1px solid rgba(216, 180, 254, 0.12);
+            border-radius: 1.25rem;
+            background-color: rgba(15, 13, 23, 0.82);
             backdrop-filter: blur(15px);
         }
     }
@@ -111,7 +123,7 @@
     }
 }
 
-@media only screen and (max-width: @minimum) {
+@media only screen and (max-width: @xxsmall) {
     .metadetails-container {
         .background-image-layer {
             .background-image {
@@ -133,7 +145,9 @@
             }
 
             .videos-list, .streams-list {
-                border-radius: var(--border-radius) var(--border-radius) 0 0;
+                margin: 0 1rem 1rem;
+                border-radius: 1.25rem;
+                min-height: 20rem;
             }
         }
     }

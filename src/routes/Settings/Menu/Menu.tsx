@@ -52,7 +52,7 @@ const Menu = ({ selected, onSelect }: Props) => {
                 {t('CINE_SIGN_OUT', { defaultValue: 'Sair da conta' })}
             </Button>
             <div className={styles['version-info-label']}>
-                {t('APP_BRAND_VERSION', { defaultValue: 'v5 CaTaLyST' })}
+                {t('APP_BRAND_VERSION', { defaultValue: 'v6.0.2 CaTaLyST' })}
             </div>
             {
                 typeof shell.state.version === 'string' &&

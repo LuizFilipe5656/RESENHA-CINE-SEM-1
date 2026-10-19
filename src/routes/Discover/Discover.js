@@ -273,6 +273,7 @@ const Discover = () => {
         watched: selectedMetaItem.watched,
         toggleWatched,
         metaId: selectedMetaItem.id,
+        metaType: selectedMetaItem.type,
         like: selectedMetaItem.like,
     };
 

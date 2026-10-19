@@ -29,11 +29,13 @@ const FEATURED_MOVIES = [
     {
         id: 'transformers-0418279',
         title: 'Transformers',
+        image: require('/assets/images/transformers-banner.jpg'),
         overview: 'Os Autobots e Decepticons levam sua guerra à Terra.',
     },
     {
         id: 'transformers-revenge-of-the-fallen-1055369',
         title: 'Transformers: A Vingança dos Derrotados',
+        image: require('/assets/images/transformers-revenge-of-the-fallen-banner.jpeg'),
         overview: 'Sam Witwicky volta a se envolver na batalha entre Autobots e Decepticons.',
     },
     {
@@ -51,26 +53,33 @@ const FEATURED_MOVIES = [
     {
         id: 'blade-runner-2049-1856101',
         title: 'Blade Runner 2049',
+        image: require('/assets/images/blade-runner-2049-banner.jpg'),
         overview: 'Um novo blade runner descobre um segredo capaz de mudar o futuro.',
     },
     {
         id: 'transformers-one-8864596',
         title: 'Transformers: O Início',
+        image: require('/assets/images/transformers-one-banner.jpeg'),
+        imagePosition: 'center 25%',
         overview: 'Orion Pax e D-16 descobrem como nasceu a rivalidade em Cybertron.',
     },
     {
         id: 'real-steel-0433035',
         title: 'Gigantes de Aço',
+        image: require('/assets/images/real-steel-banner.jpg'),
         overview: 'Um ex-boxeador treina um robô para competir em lutas de alto nível.',
     },
     {
         id: 'pacific-rim-1663662',
         title: 'Círculo de Fogo',
+        image: require('/assets/images/pacific-rim-uprising-banner.jpg'),
         overview: 'Pilotos unem forças para defender a humanidade de criaturas colossais.',
     },
     {
         id: 'pacific-rim-uprising-2557478',
         title: 'Círculo de Fogo: A Revolta',
+        image: require('/assets/images/pacific-rim-banner.jpg'),
+        imagePosition: 'center 25%',
         overview: 'Uma nova geração de pilotos enfrenta outra ameaça Kaiju.',
     },
 ];
@@ -90,10 +99,14 @@ const FeaturedBanner = () => {
                         styles['featured-card'],
                         movies[activeMovieIndex].image ? '' : styles['featured-card-no-image'],
                     ].join(' ')}
-                    key={movies[activeMovieIndex].id}
                 >
                     {movies[activeMovieIndex].image ?
-                        <img className={styles['featured-card-image']} src={movies[activeMovieIndex].image} alt={''} />
+                        <img
+                            className={styles['featured-card-image']}
+                            src={movies[activeMovieIndex].image}
+                            alt={''}
+                            style={{ objectPosition: movies[activeMovieIndex].imagePosition || 'center 42%' }}
+                        />
                         :
                         null
                     }
@@ -106,6 +119,9 @@ const FeaturedBanner = () => {
                         </h1>
                         <p className={styles['featured-card-overview']}>{movies[activeMovieIndex].overview}</p>
                         <a className={styles['featured-card-action']} href={`#/detail/movie/${movies[activeMovieIndex].id}`}>
+                            <svg width={'16'} height={'16'} viewBox={'0 0 24 24'} fill={'currentColor'} aria-hidden={'true'}>
+                                <path d={'M8 5v14l11-7z'} />
+                            </svg>
                             {t('BOARD_WATCH_NOW', { defaultValue: 'Assistir agora' })}
                         </a>
                     </div>

@@ -21,7 +21,7 @@ const Info = ({ streamingServer }: Props) => {
         <Section className={styles['info']}>
             <Option label={t('SETTINGS_APP_VERSION')}>
                 <div className={styles['label']}>
-                    {t('APP_BRAND_VERSION', { defaultValue: 'v5 CaTaLyST' })}
+                    {t('APP_BRAND_VERSION', { defaultValue: 'v6.0.2 CaTaLyST' })}
                 </div>
             </Option>
             {

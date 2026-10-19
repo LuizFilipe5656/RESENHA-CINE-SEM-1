@@ -16,6 +16,27 @@
     z-index: 0;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+
+    .media-type {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.4rem;
+        color: #d8b4fe;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+
+        span {
+            padding-left: 0.8rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            color: #a7a3b5;
+            font-size: 0.65rem;
+        }
+    }
 
     &.compact {
         .meta-info-container {
@@ -67,8 +88,11 @@
 
     .meta-info-container {
         flex: 1;
+        min-height: 0;
         align-self: stretch;
         overflow-y: auto;
+        padding-right: 0.5rem;
+        scrollbar-width: thin;
 
         &:not(:hover) {
             scrollbar-color: transparent transparent;
@@ -80,18 +104,22 @@
 
         .logo, .logo-placeholder {
             display: block;
-            max-width: 100%;
-            margin-bottom: 2rem;
+            max-width: min(100%, 30rem);
+            margin-bottom: 1.25rem;
         }
 
         .logo {
-            height: 9rem;
+            width: 100%;
+            height: 7rem;
             object-fit: contain;
-            object-position: center;
+            object-position: left center;
         }
 
         .logo-placeholder {
-            font-size: 1.7rem;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
             color: @color-surface-light5-90;
         }
 
@@ -100,12 +128,17 @@
             flex-direction: row;
             align-items: center;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            gap: 0.65rem;
+            margin-top: 0.5rem;
 
             .runtime-label, .release-info-label {
                 flex: 0 1 auto;
-                margin-right: 3rem;
-                font-size: 1.25rem;
+                margin-right: 0;
+                padding: 0.4rem 0.75rem;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 0.5rem;
+                background: rgba(255, 255, 255, 0.04);
+                font-size: 0.85rem;
                 font-weight: 600;
                 color: var(--primary-foreground-color);
             }
@@ -142,18 +175,36 @@
         }
 
         .description-container {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border: 1px solid rgba(216, 180, 254, 0.14);
+            border-radius: 1rem;
+            background: rgba(12, 10, 20, 0.65);
             font-size: 1rem;
             font-weight: 400;
-            line-height: 2em;
-            color: var(--primary-foreground-color);
+            line-height: 1.8;
+            color: #e2deeb;
+
+            .synopsis-text {
+                margin: 0.5rem 0 0;
+                white-space: pre-line;
+                overflow-wrap: anywhere;
+            }
+
+            .synopsis-status {
+                display: block;
+                margin-top: 0.85rem;
+                color: #b6acc8;
+                font-size: 0.72rem;
+                line-height: 1.5;
+            }
 
             .label-container {
                 text-transform: uppercase;
-                font-size: 0.95rem;
+                font-size: 0.72rem;
                 font-weight: 700;
-                color: var(--primary-foreground-color);
-                opacity: 0.3;
+                letter-spacing: 0.1em;
+                color: #d8b4fe;
             }
         }
 
@@ -169,7 +220,9 @@
         flex-direction: row;
         align-items: flex-end;
         flex-wrap: wrap;
-        padding-top: 3.5rem;
+        padding-top: 1.25rem;
+        margin-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         overflow: visible;
 
         .label {
@@ -195,6 +248,9 @@
     
         .action-button {
             flex: none;
+            height: 3.25rem;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 1rem;
 
             &:not(:last-child) {
@@ -317,7 +373,7 @@
     .meta-preview-container {
         .meta-info-container {
             .logo {
-                margin: 2rem auto;
+                margin: 1rem 0;
             }
 
             .runtime-release-info-container {
@@ -331,7 +387,7 @@
 
         .action-buttons-container {
             flex-shrink: 0;
-            margin-top: 3rem;
+            margin-top: 1.25rem;
             overflow: visible;
             scrollbar-width: none;
 

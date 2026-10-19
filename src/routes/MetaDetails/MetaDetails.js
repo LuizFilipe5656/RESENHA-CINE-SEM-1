@@ -227,6 +227,7 @@ const MetaDetails = () => {
                                             watched={metaDetails.metaItem.content.content.watched}
                                             toggleWatched={toggleWatched}
                                             metaId={metaDetails.metaItem.content.content.id}
+                                            metaType={metaDetails.metaItem.content.content.type}
                                             ratingInfo={metaDetails.ratingInfo}
                                         />
                                     </React.Fragment>
